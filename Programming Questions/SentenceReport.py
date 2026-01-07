@@ -59,6 +59,7 @@ for i, s in enumerate(word):
 
 #print(word)
 
+#Compress the list to remove items that are empty string
 word = [s for s in word if s.strip()]
 
 #print(word)

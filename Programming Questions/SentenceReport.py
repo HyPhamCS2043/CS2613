@@ -2,6 +2,7 @@
 # 3644179
 # References: https://www.geeksforgeeks.org/python/python-removing-unwanted-characters-from-string/
 #             https://stackoverflow.com/questions/54974579/change-values-in-a-list-using-a-for-loop-python
+#             https://www.geeksforgeeks.org/python/python-remove-empty-strings-from-list-of-strings/
 
 import re
 

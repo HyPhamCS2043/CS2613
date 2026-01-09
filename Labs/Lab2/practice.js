@@ -1,3 +1,6 @@
+//Author: Hy Pham
+//3644179
+
 console.log("Hello World, I'm JS");
 
 //Examples of how logical operator returns original value on either left 

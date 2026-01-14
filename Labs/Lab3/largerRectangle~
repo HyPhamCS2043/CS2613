@@ -1,0 +1,8 @@
+#lang racket
+(define (larger-rectangle (l1 w1 l2 w2))
+  (define (rect-area (length width))
+    (* length width))
+  (cond
+    [(> (rect-area (l1 w1))(rect-area (l2 w2)))(display -1)]
+    [(< (rect-area (l1 w1))(rect-area (l2 w2)))(display 1)]
+    [else (display 0)]))

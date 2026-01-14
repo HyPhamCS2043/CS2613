@@ -1,0 +1,26 @@
+#lang racket
+(define (sumDigit n)
+  (cond
+    [(< n 20) n]
+    [else (+ (remainder n 10)(sumDigit(quotient n 10)))]))
+
+(displayln (* -1(sumDigit 13583)))
+(define m (sumDigit 2334683))
+(displayln m)
+(displayln (* m (sumDigit 19754)))
+
+(define (fib n)
+  (cond
+    [(equal? n 0) 0]
+    [(equal? n 1) 1]
+    [(> n 1) (+(fib (- n 1))(fib(- n 2)))]))
+
+(define (testFib n)
+  (display "The fibonacci number at the ")
+  (display n)
+  (display "th position is ")
+  (displayln (fib n)))
+
+(displayln (fib 13))
+(testFib 13)
+(testFib 15)

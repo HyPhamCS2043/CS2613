@@ -1,0 +1,26 @@
+#lang racket
+(define (isNumber n)
+  (if (number? n)
+      "It is a number"
+      "It is NOT a number"))
+
+;Nested if example
+(define (ice-cream flavour)
+  (if (and (string? flavour)(string-contains? flavour "chocolate"))
+      "You picked the correct choice!"
+      "You picked not my favorite"))
+
+;cond
+(define (animal-farm animal)
+  (cond
+    [(equal? animal "chicken")
+     "Bird"]
+    [(or (equal? animal "Pig")(equal? animal "Cow"))
+     "Mammal"]
+    [else "Unknown"]
+    ))
+
+;lambda for anonymous function
+;(do_twice (lambda (s) (string-append s "!")) "hello") will print "hello!!"
+(define (do_twice function str)
+  (function (function str)))

@@ -1,0 +1,3 @@
+#lang racket
+(define (extract str)
+  (substring str 3 9))

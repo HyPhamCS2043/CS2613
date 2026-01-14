@@ -1,0 +1,22 @@
+#lang racket
+(define (extract str)
+  (substring str 3 9))
+
+;This definition call means pie = 3
+(define pie 3)
+
+(define (piece str)
+  (substring str 0 pie))
+
+; Because only the value of the last expression is returned, this should
+; only print "preheating oven..."
+(define (bake flavor)
+  (string-append flavor " pie\n")
+  (printf "preheating oven...\n"))
+
+; This function however will print both line, because while functions only return
+; the last expression value, they do evaluated other expression for
+; side-effects like printing
+(define (bakeNow flavor)
+  (printf "preheating oven...\n")
+  (string-append flavor " pie"))

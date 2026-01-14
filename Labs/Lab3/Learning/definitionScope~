@@ -1,0 +1,10 @@
+#lang racket
+(define (converse s)
+  (define (starts? s2)
+    (printf s2)
+    (define spaced-s2 (string-append s2 " "))
+    (string-prefix? s spaced-s2))
+  (cond
+    [(starts? "hello") "hi!"]
+    [(starts? "goodbye") "bye!"]
+    [else "huh?]"]))

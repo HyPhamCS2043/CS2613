@@ -1,0 +1,5 @@
+#lang racket
+(define (sumDigit n)
+  (cond
+    [(< x 20) n]
+    [else (+ (remainder n 10)(sumDigit(quotient n 10)))]))

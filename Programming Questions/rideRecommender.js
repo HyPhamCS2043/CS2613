@@ -19,7 +19,7 @@ function parkRideRequirements (age, height, weight, mood, view) {
 const ferrisWheel = [10, 152.4, 0, "Calm", true];
 const rollerCoaster = [10, 152.4, 0, "Exciting", true];
 const bumperCars = [14, 152.4, 36.29, "Exciting", false];
-const merryGoRound = [4, 0, 0, "Calm", false]; //recommended for under 12 too
+const merryGoRound = [4, 0, 0, "Calm", false]; //only recommended if under 12 
 const tiltAWhirl = [4, 152.4, 36.29, "Exciting", false];
 
 const openningHour = new Date("Jan 1, 2026 09:00:00");
@@ -27,12 +27,8 @@ const closingHour = new Date("April 30, 2026 21:00:00")
 
 //Get customer's arrival time (system time)
 var customerTime = new Date();
-console.log("customer arrival time: " + customerTime.getHours());
+console.log(`Your arrival time: ${customerTime.getHours()}:${customerTime.getMinutes()} ` );
 
-//console.log("This should print the openning time: " + openningHour.getHours());
-//console.log("This should print the closing time: " + closingHour.getHours());
-//console.log("closingHour - openningHour = " + (closingHour.getHours() - openningHour.getHours()));
-//console.log("Customer arrival time difference: " + (closingHour.getHours() - customerTime.getHours()));
 
 //Function that compares the customer request with a ride's requirements.
 function checkRequirements(cust, ride) {
@@ -64,12 +60,16 @@ let customerInput = prompt();
 //Split customer input into an array using "," as delimiter.
 var criteria = customerInput.split(",");
 
+if (criteria.length < 5) {
+    throw new Error("Not enough information, please input 5 clauses separated by comma.")
+}
+
 console.log("The input is: " + customerInput);
 
 //Clean up the data by removing white spaces.
-for(i = 0; i < criteria.length; i++) {
+for(i = 0; i < 5; i++) {
     criteria[i] = criteria[i].trim();
-    console.log(criteria[i]);
+    //console.log(criteria[i]);
 }
 
 //Taking care of clear edge cases, such as when visitors are younger than 4

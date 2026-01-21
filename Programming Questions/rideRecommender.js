@@ -1,13 +1,11 @@
 //Author: Hy Pham
 //3644179
 
-
 const ferrisWheel = [10, 152.4, 0, "Calm", true];
 const rollerCoaster = [10, 152.4, 0, "Exciting", true];
 const bumperCars = [14, 152.4, 36.29, "Exciting", false];
 const merryGoRound = [4, 0, 0, "Calm", false]; //only recommended if under 12 
 const tiltAWhirl = [4, 152.4, 36.29, "Exciting", false];
-
 
 //Function that compares the customer request with a ride's requirements.
 function checkRequirements(cust, ride) {
@@ -22,10 +20,11 @@ function checkRequirements(cust, ride) {
     if (cust[2] < ride[2]) {
         viability = false;
     }
-    if ((cust[3] === "Calm" && ride[3] === "Exciting") || (cust[3] === "Exciting" && ride[3] === "Calm")) {
+    if ((cust[3].toLowerCase() === "calm" && ride[3].toLowerCase()  === "exciting") 
+        || (cust[3].toLowerCase()  === "exciting" && ride[3].toLowerCase()  === "calm")) {
         viability = false;
     }
-    if ((cust[4]) === "Yes" && ride[4] == false) {
+    if ((cust[4]).toLowerCase()  === "yes" && ride[4] == false) {
         viability = false;
     }
     return viability;
@@ -40,15 +39,26 @@ console.log(); //Add a line between user input and output
 //Split customer input into an array using "," as delimiter.
 var criteria = customerInput.split(",");
 
-if (criteria.length < 5) {
-    throw new Error("Not enough information, please input 5 clauses separated by comma.")
+//Check if the user puts in at least 5 requirements
+while (criteria.length < 5) {
+    console.log("Not enough requirements. Please input 5 requirement values, separated by comma ',' ");
+    customerInput = prompt();
+    console.log();
+
+    criteria = customerInput.split(",");
+
+    if(criteria.length >= 5) {
+        break;
+    }
+}
+//Clean up the data by removing white spaces.
+for(i = 0; i < 5; i++) {
+    criteria[i] = criteria[i].trim();
 }
 
-//console.log("The input is: " + customerInput);
 
 //Get customer's arrival time (system time)
 var customerTime = new Date();
-customerTime.setMinutes(59);
 
 //If current time is at exactly 00 minutes, format output string to print 00 instead of 0
 var currentMinutes = customerTime.getMinutes() === 0 ? "00" : customerTime.getMinutes();
@@ -73,12 +83,6 @@ if(isOpen) {
     console.log("The Amusement Park is OPEN.");
 } else {
     console.log("The Amusement Park is CLOSED.");
-}
-
-//Clean up the data by removing white spaces.
-for(i = 0; i < 5; i++) {
-    criteria[i] = criteria[i].trim();
-    //console.log(criteria[i]);
 }
 
 console.log("Ride Recommendations:");

@@ -15,17 +15,17 @@ function parkRideRequirements (age, height, weight, mood, view) {
 //const merryGoRound = parkRideRequirements(4, 0, 0, "calm", null); //recommended for under 12 too
 //const tiltAWhirl = parkRideRequirements(4, 152.4, 36.29, "exciting", null);
 
-const ferrisWheel = [10, 152.4, 0, "calm", true];
-const rollerCoaster = [10, 152.4, 0, "exciting", true];
-const bumperCars = [14, 152.4, 36.29, "exciting", null];
-const merryGoRound = [4, 0, 0, "calm", null]; //recommended for under 12 too
-const tiltAWhirl = [4, 152.4, 36.29, "exciting", null];
+const ferrisWheel = [10, 152.4, 0, "Calm", true];
+const rollerCoaster = [10, 152.4, 0, "Exciting", true];
+const bumperCars = [14, 152.4, 36.29, "Exciting", null];
+const merryGoRound = [4, 0, 0, "Calm", null]; //recommended for under 12 too
+const tiltAWhirl = [4, 152.4, 36.29, "Exciting", null];
 
 const openningHour = new Date("Jan 1, 2026 09:00:00");
 const closingHour = new Date("April 30, 2026 21:00:00")
 
 var customerTime = new Date();
-console.log("customer time: " + customerTime.getHours());
+console.log("customer arrival time: " + customerTime.getHours());
 
 //console.log("This should print the openning time: " + openningHour.getHours());
 //console.log("This should print the closing time: " + closingHour.getHours());
@@ -79,3 +79,5 @@ function checkRequirements(cust, ride) {
     
     return viability;
 }
+
+//console.log("Test check viability output for bumper cars: " + checkRequirements(criteria, bumperCars));

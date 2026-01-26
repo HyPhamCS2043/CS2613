@@ -1,0 +1,15 @@
+1;
+#Author: Hy Pham
+#Script that asks the user to input a vector with their chosen number of elements
+#then calculate its  unit vector.
+inputNum = input("How many values would you like to input? ");
+baseVector = ones(1, inputNum);
+i = inputNum;
+index = 1;
+while(i>0)
+  currentIn = input("");
+  baseVector(1, index) = currentIn;
+  i--;
+  index++;
+endwhile
+unitVector = calUnitVector(baseVector)

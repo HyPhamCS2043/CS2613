@@ -1,0 +1,11 @@
+1;
+#Author: Hy Pham
+#Script to test calUnitVector
+test1 = [8 10 12 14]
+test2 = [2
+	 -4
+	 4]
+test3 = [0 0 0 0 0]
+calUnitVector(test1)
+calUnitVector(test2)
+calUnitVector(test3)

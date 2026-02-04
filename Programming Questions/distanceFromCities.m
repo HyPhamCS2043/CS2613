@@ -66,9 +66,9 @@ totalD = rows(closestD);
 [minval, rowD] = min(closestD(:, 2));
 nearestLocationD = closestD(rowD, 1);
 
-printf("City     |     #Closest   |  Nearest Location\n");
+printf("City     |     # Closest   |  Nearest Location\n");
 printf("===============================================\n");
-printf("A        |     %d         |       %d\n", totalA, nearestLocationA);
-printf("B        |     %d         |       %d\n", totalB, nearestLocationB);
-printf("C        |     %d         |       %d\n", totalC, nearestLocationC);
-printf("D        |     %d         |       %d\n", totalD, nearestLocationD);
+printf("A        |     %d          |       %d\n", totalA, nearestLocationA);
+printf("B        |     %d          |       %d\n", totalB, nearestLocationB);
+printf("C        |     %d          |       %d\n", totalC, nearestLocationC);
+printf("D        |     %d          |       %d\n", totalD, nearestLocationD);

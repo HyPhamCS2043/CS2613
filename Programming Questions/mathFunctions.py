@@ -2,7 +2,7 @@
 #Student number: 3644179
 
 
-testArr = [1.0, 2.0, 3.0, 4.0, 5.0]
+#testArr = [1.0, 2.0, 3.0, 4.0, 5.0]
 #Function to calculate the sum of all numbers in the input list
 def calSum(inputArr):
     curSum = 0
@@ -10,14 +10,14 @@ def calSum(inputArr):
         curSum += i
     return curSum
 
-print(calSum(testArr))
+#print(calSum(testArr))
 
 #Function to calculate the average of all numbers in the input list
 def calAverage(inputArr):
     total = calSum(inputArr)
     return total/len(inputArr)
 
-print(calAverage(testArr))
+#print(calAverage(testArr))
 
 #Function to calculate the largest value of the input list
 def calMax(inputArr):
@@ -27,7 +27,7 @@ def calMax(inputArr):
             curMax = i
     return curMax
 
-print(calMax(testArr))
+#print(calMax(testArr))
 
 #Function to calculate the smallest value of the input list
 def calMin(inputArr):
@@ -37,7 +37,7 @@ def calMin(inputArr):
             curMin = i
     return curMin
 
-print(calMin(testArr))
+#print(calMin(testArr))
 
 #Function that recursively calculate the factorial value of the input num
 def factorial(num):
@@ -46,7 +46,7 @@ def factorial(num):
     else:
         return num * factorial(num -1)
     
-print('Factorial of 5 is', factorial(5))
+#print('Factorial of 5 is', factorial(5))
 
 #Function that calculate the power of input number to input exponent
 def power(num, exponent):
@@ -60,7 +60,7 @@ def power(num, exponent):
             i += 1 
         return output    
 
-print("2 to the power of 1 is", power(2, 1))
+#print("2 to the power of 1 is", power(2, 1))
 
 #Function that approximate exponential function for each
 #value in input list
@@ -73,8 +73,8 @@ def calExpo(inputArr):
         outputArr.append(curCalResult) 
     return outputArr
 
-outExpoArr = calExpo(testArr)
-print(*outExpoArr, sep=", ")
+#outExpoArr = calExpo(testArr)
+#print(*outExpoArr, sep=", ")
 
 #Function that approximate the Poisson distribution for each
 #value in input list
@@ -87,8 +87,8 @@ def calPoisson(inputArr):
         outputArr.append(curCalResult) 
     return outputArr
 
-outPoisArr = calPoisson(testArr)
-print(*outPoisArr, sep=", ")
+#outPoisArr = calPoisson(testArr)
+#print(*outPoisArr, sep=", ")
 
 #Function that approximate the Sin value for each
 #value in input list
@@ -102,8 +102,8 @@ def calSin(inputArr):
         outputArr.append(curCalResult) 
     return outputArr
 
-outSinArr = calSin(testArr)
-print(*outSinArr, sep=", ")
+#outSinArr = calSin(testArr)
+#print(*outSinArr, sep=", ")
 
 #Function that approximate cosine value for each
 #value in input list
@@ -117,14 +117,17 @@ def calCos(inputArr):
         outputArr.append(curCalResult) 
     return outputArr
 
-outCosArr = calCos(testArr)
+#outCosArr = calCos(testArr)
 #print(*outCosArr, sep=", ")
-print(', '.join(str(i) for i in outCosArr))
+#print(', '.join(str(i) for i in outCosArr))
 
+#FILE I/O
+
+#Create output file DataOutput.txt and read from input file DataInput.txt, then write the result to output file
 outputFile = open("DataOutput.txt", "w", encoding= "utf-8")
 with open('DataInput.txt', "r", encoding= "utf-8") as inputFile:
     line = inputFile.readline()
-    if(line != "END"):
+    while(line != "END"):
         command = line
         numOfVal = int(inputFile.readline())
         inputList = []
@@ -134,25 +137,33 @@ with open('DataInput.txt', "r", encoding= "utf-8") as inputFile:
             numOfVal -= 1
 
         #print(*inputList, sep = ", ")
-        print(command == "SUM\n")
+        #print(command == "SUM\n")
+        command = command.replace("\n", "")
+
         if command == "SUM":
             toWrite = str(calSum(inputList))
-            outputFile.write(toWrite)
-            outputFile.write("\n")
         elif command == "AVG":
             toWrite = str(calAverage(inputList))
-            outputFile.write(toWrite)
-            outputFile.write("\n")
         elif command == "MAX":
-            outputFile.write(calMax(inputList))
-            outputFile.write("\n")
+            toWrite = str(calMax(inputList))
         elif command == "MIN":
-            outputFile.write(calMin(inputList))
-            outputFile.write("\n")
+            toWrite = str(calMin(inputList))
         elif command == "FXP":
             outputList = calExpo(inputList)
             toWrite = ', '.join(str(i) for i in outputList)
-            outputFile.write(toWrite)
-            outputFile.write("\n")
-        
+        elif command == "FPO":
+            outputList = calPoisson(inputList)
+            toWrite = ', '.join(str(i) for i in outputList)
+        elif command == "FSN":
+            outputList = calSin(inputList)
+            toWrite = ', '.join(str(i) for i in outputList)
+        elif command == "FCS":
+            outputList = calCos(inputList)
+            toWrite = ', '.join(str(i) for i in outputList)
+
+        outputFile.write(toWrite)
+        outputFile.write("\n")
+
+        line = inputFile.readline()
+
 outputFile.close()

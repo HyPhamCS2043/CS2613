@@ -124,13 +124,15 @@ def calCos(inputArr):
 #FILE I/O
 
 #Create output file DataOutput.txt and read from input file DataInput.txt, then write the result to output file
-outputFile = open("DataOutput.txt", "w", encoding= "utf-8")
+outputFile = open("DataOutput.txt", "w+", encoding= "utf-8")
 with open('DataInput.txt', "r", encoding= "utf-8") as inputFile:
     line = inputFile.readline()
     while(line != "END"):
         command = line
         numOfVal = int(inputFile.readline())
         inputList = []
+
+        #While there is still arguments to read, read the value and add it to the input list
         while numOfVal > 0:
             val = float(inputFile.readline())
             inputList.append(val)
@@ -165,5 +167,15 @@ with open('DataInput.txt', "r", encoding= "utf-8") as inputFile:
         outputFile.write("\n")
 
         line = inputFile.readline()
+
+#Removing trailing newline at the end of the file
+outputFile.seek(0)
+content = outputFile.read()
+content = content.rstrip('\n')
+#print(content)
+
+outputFile.seek(0)
+outputFile.write(content)
+outputFile.truncate()
 
 outputFile.close()

@@ -60,6 +60,7 @@ for i, s in enumerate(word):
 #print(word)
 
 #Compress the list to remove items that are empty string
+#if s.strip() means "if s.strip() return a string that is not empty, then true, else it is false"
 word = [s for s in word if s.strip()]
 
 #print(word)

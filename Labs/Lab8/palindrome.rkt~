@@ -1,0 +1,8 @@
+#lang racket
+
+(define (palindrome str)
+  (cond
+    [(= (string-length str) 1) #t]
+    [(non-empty-string? str) #t]
+    [else (palindrome (substring str 1 (- (string-length str) 1)))]))
+      

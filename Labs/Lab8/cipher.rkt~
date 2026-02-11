@@ -1,0 +1,12 @@
+#lang racket
+
+
+
+(define (cipher word key start charList)
+  (cond
+    [(= start (string-length word)) charList]
+    [else (define cur (char->integer (string-ref word start)))
+          (define new (+ cur key))
+          (append charList (integer->char new))
+          (cipher word key (+ start 1) charList)]))
+  

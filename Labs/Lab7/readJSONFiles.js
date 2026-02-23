@@ -10,7 +10,7 @@ const fs = require('fs')
 fs.readdir("Lab7_StudentFiles/", (err, files) => {
   if (err)
     console.log(err);
-  else {
+  else { 
     var sumDifAbby = 0
     var sumDifTyson = 0
     var sumDifZack = 0

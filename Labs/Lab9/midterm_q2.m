@@ -14,21 +14,14 @@
 ## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {@var{retval} =} countLetters (@var{input1})
+## @deftypefn {} {@var{retval} =} midterm_q2 (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
-## Author: Hy Pham <hpham@gc112m13.cs.unb.ca>
-## Created: 2026-02-04
+## Author: Hy Pham <hpham@gc112m14.cs.unb.ca>
+## Created: 2026-02-18
 
-function retval = countLetters (inputStr)
-  cleaned = tolower(inputStr);
-  retval = zeros (1, 26);
-  for i = 1:length(cleaned)
-    curChar = cleaned(1, i);
-    if (curChar - 96) > 0
-      retval(1, curChar - 96) += 1;
-    endif
-  endfor
+function retval = midterm_q2 (input1, input2)
+
 endfunction

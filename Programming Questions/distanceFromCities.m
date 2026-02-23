@@ -51,6 +51,7 @@ for i = 1:(rows(locationMatrix) - 1)
 endfor
 
 totalA = rows(closestA);
+ //find minimum of values in all row, column 2 of matrix closestA. Output is that value (minVal) and the row where it is found (rowA)
 [minval, rowA] = min(closestA(:, 2));
 nearestLocationA = closestA(rowA, 1);
 

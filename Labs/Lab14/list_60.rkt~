@@ -1,0 +1,8 @@
+#lang racket
+
+(define lst '())
+(define (list_60 n)
+  (cons lst (cons n '()))
+  (cond
+    [(< n 61) (list_60 (+ n 1))]
+    [else lst]))

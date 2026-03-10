@@ -1,0 +1,6 @@
+#lang racket
+(define sum (listIn total)
+  (cond
+    [(empty? listIn) total]
+    [else (+ total (first listIn))
+          (sum (list-tail listIn) total)])

@@ -131,3 +131,27 @@ function listOut = calCos(lst)
 endfunction
 
 calCos(testMatrix)
+
+function readInputFile(fileIn)
+    line = fgetl(fileIn);
+    while(line != "END")
+        command = line
+        numOfVal = str2num(fgetl(fileIn));
+        inputList = [];
+
+        while numOfVal > 0
+            val = str2num(fgetl(fileIn));
+            inputList = [inputList; val];
+            numOfVal -= 1;
+        endwhile
+
+        command = strtrim(command);
+
+        if (command == "SUM")
+        endif
+    endwhile
+endfunction
+
+f1 = fopen("DataInput.txt","r");
+
+fclose("DataInput.txt");

@@ -12,7 +12,7 @@ function sumOut = calSum (lst)
     endfor
 endfunction
 
-calSum(testMatrix)
+calSum(testMatrix);
 
 #Function to calculate the average of all numbers in the input list
 function avgOut = calAvg(lst)
@@ -20,7 +20,7 @@ function avgOut = calAvg(lst)
     avgOut = total/length(lst);
 endfunction
 
-calAvg(testMatrix)
+calAvg(testMatrix);
 
 #Function to calculate the largest value of the input list
 function maxOut = calMax(lst)
@@ -32,7 +32,7 @@ function maxOut = calMax(lst)
     endfor
 endfunction
 
-calMax(testMatrix)
+calMax(testMatrix);
 
 #Function to calculate the smallest value of the input list
 function minOut = calMin(lst)
@@ -44,7 +44,7 @@ function minOut = calMin(lst)
     endfor
 endfunction
 
-calMin(testMatrix)
+calMin(testMatrix);
 
 #Function that recursively calculate the factorial value of the input number 
 function numOut = calFactorial(num)
@@ -55,7 +55,7 @@ function numOut = calFactorial(num)
     endif
 endfunction
 
-disp("The value of calFactorial(5) is:"), disp(calFactorial(5));
+#disp("The value of calFactorial(5) is:"), disp(calFactorial(5));
 
 #Function that calculate the power of input number to input exponent
 function numOut = calPower(num, exponent)
@@ -66,7 +66,7 @@ function numOut = calPower(num, exponent)
     endif
 endfunction
 
-disp("The value of calPower(2, 3) is:"), disp(calPower(2, 3));
+#disp("The value of calPower(2, 3) is:"), disp(calPower(2, 3));
 
 #Function that approximate exponential function for each
 #value in input list
@@ -77,12 +77,12 @@ function listOut = calExpo(lst)
         for k = [0:51]
             curCalResult += calPower(i, k)/calFactorial(k);
         endfor
-        listOut = [listOut; curCalResult];
+        listOut = [listOut, curCalResult];
     endfor
 endfunction
 
-output_precision (7)
-calExpo(testMatrix)
+output_precision (7);
+calExpo(testMatrix);
 
 #Function that approximate the Poisson distribution for each
 #value in input list
@@ -93,11 +93,11 @@ function listOut = calPoisson(lst)
         for k = [0:51]
             curCalResult += k * (calPower(i, k)/calFactorial(k));
         endfor
-        listOut = [listOut; curCalResult];
+        listOut = [listOut, curCalResult];
     endfor
 endfunction
 
-calPoisson(testMatrix)
+calPoisson(testMatrix);
 
 #Function that approximate the Sin value for each
 #value in input list
@@ -109,12 +109,12 @@ function listOut = calSin(lst)
             key = 2 * k + 1;
             curCalResult += (calPower(-1, k) * (calPower(i, key))/calFactorial(key));
         endfor
-        listOut = [listOut; curCalResult];
+        listOut = [listOut, curCalResult];
     endfor
 endfunction
 
-output_precision(5)
-calSin(testMatrix)
+output_precision(5);
+calSin(testMatrix);
 
 #Function that approximate cosine value for each
 #value in input list
@@ -126,32 +126,62 @@ function listOut = calCos(lst)
             key = 2 * k;
             curCalResult += (calPower(-1, k) * (calPower(i, key))/calFactorial(key));
         endfor
-        listOut = [listOut; curCalResult];
+        listOut = [listOut, curCalResult];
     endfor
 endfunction
 
-calCos(testMatrix)
+calCos(testMatrix);
 
-function readInputFile(fileIn)
+function readInputFile(fileIn, fileOut)
     line = fgetl(fileIn);
+    toWrite = "";
     while(line != "END")
-        command = line
+        command = line;
         numOfVal = str2num(fgetl(fileIn));
         inputList = [];
 
         while numOfVal > 0
             val = str2num(fgetl(fileIn));
-            inputList = [inputList; val];
+            inputList = [inputList, val];
             numOfVal -= 1;
         endwhile
 
         command = strtrim(command);
 
         if (command == "SUM")
+            toWrite = cstrcat(toWrite, num2str(calSum(inputList)));
+        elseif (command == "AVG")
+            toWrite = cstrcat(toWrite, num2str(calAvg(inputList)));
+        elseif (command == "MAX")
+            toWrite = cstrcat(toWrite, num2str(calMax(inputList)));
+        elseif (command == "MIN")
+            toWrite = cstrcat(toWrite, num2str(calMin(inputList)));
+        elseif (command == "FXP")
+            toWrite = cstrcat(toWrite, num2str(calExpo(inputList)));
+        elseif (command == "FPO")
+            toWrite = cstrcat(toWrite, num2str(calPoisson(inputList)));
+        elseif (command == "FSN")
+            toWrite = cstrcat(toWrite, num2str(calSin(inputList)));
+        elseif (command == "FCS")
+            toWrite = cstrcat(toWrite, num2str(calCos(inputList)));
         endif
+
+        toWrite = cstrcat(toWrite, "\n");
+        line = fgetl(fileIn);
     endwhile
+    toWrite = strtrim(toWrite);
+    fputs(fileOut, toWrite);
 endfunction
 
-f1 = fopen("DataInput.txt","r");
+f1 = fopen("SampleInputFiles1/DataInput.txt","r");
+out1 = fopen("PQ2_Octave_Outputs/Q1Output.txt", "w");
+readInputFile(f1, out1);
+fclose("SampleInputFiles1/DataInput.txt");
+fclose("PQ2_Octave_Outputs/Q1Output.txt");
 
-fclose("DataInput.txt");
+f2 = fopen("SampleInputFiles1/DataInput2.txt","r");
+out2 = fopen("PQ2_Octave_Outputs/Q2Output.txt", "w");
+readInputFile(f2, out2);
+fclose("SampleInputFiles1/DataInput2.txt");
+fclose("PQ2_Octave_Outputs/Q2Output.txt");
+

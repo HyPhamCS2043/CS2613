@@ -161,17 +161,28 @@ class Course(DoubleLinkedList):
 
             while current:
                 if currentID == studentID:
-                    if current.next:
+
+                    if current == self.head:
+                        self.head = current.next
+                        current.next.prev = None
+                    elif current == self.tail: 
+                        self.tail = current.prev
+                        self.tail.next = None
+                    else:
                         current.prev.next = current.next
+                        current.next.prev = current.prev
                     
-                    current.next.prev = current.prev
                     current.next = None
                     current.prev = None
                     self.length -= 1
                     removed = True
     
-                current = current.next
-                currentID = current.data.studentID
+                #If the student has been removed or if we have reached the end of the course list
+                if removed or current.next is None:
+                    break
+                else:
+                    current = current.next
+                    currentID = current.data.studentID
             
             if removed:
                 print("Student is successfully removed")
@@ -212,26 +223,28 @@ student4 = Student("Zach", 0)
 #print(linked.length)
 
 course1 = Course("CS2053", 5)
-print(course1.num_students())
+print("Number of student in course: " + str(course1.num_students()))
 
 course1.add_students(student1)
 course1.add_students(student2)
 
-print(course1.head.data.name)
-print(course1.tail.data.name)
 
+print("Current head node: " + course1.head.data.name)
+print("Current tail node: " + course1.tail.data.name)
+
+print("----------------------------------------")
 course1.add_students(student3)
 
-
 print("After adding 3 students")
-print(course1.num_students())
-print(course1.head.data.name)
-print(course1.tail.data.name)
+print("Number of student in course: " + str(course1.num_students()))
+print("Current head node: " + course1.head.data.name)
+print("Current tail node: " + course1.tail.data.name)
 print("Ascending List:")
 course1.print_ascend()
 print("Descending List:")
 course1.print_descend() 
 
+print("----------------------------------------")
 #Adding duplicates
 course1.add_students(student4)  
 course1.add_students(student1)
@@ -239,3 +252,28 @@ print("Ascending List:")
 course1.print_ascend()
 print("Descending List:")
 course1.print_descend()   
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(5)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()   
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(5)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()  
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(0)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()  
+print("Number of student in course: " + str(course1.num_students()))

@@ -14,23 +14,20 @@
 ## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {@var{retval} =} countLetters (@var{input1})
+## @deftypefn {} {@var{retval} =} midterm_q2 (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
-## Author: Hy Pham <hpham@gc112m13.cs.unb.ca>
-## Created: 2026-02-04
+## Author: Hy Pham <hpham@gc112m14.cs.unb.ca>
+## Created: 2026-02-18
 
-### This function takes in a string and counts the number of each letter in the string, returning a vector of the counts for each letter
-function retval = countLetters (inputStr)
-  cleaned = tolower(inputStr);
-  ## create a vector of 26 zeros to count the number of each letter
-  retval = zeros (1, 26);
-  for i = 1:length(cleaned)
-    curChar = cleaned(1, i);
-    if (curChar - 96) > 0
-      retval(1, curChar - 96) += 1;
-    endif
-  endfor
+function retstr = midterm_q2 (str)
+    retstr = [""];
+    for i = 1:length(str)
+        curchar = str(1, i);
+        if index(retstr, curchar) == 0
+            retstr = [retstr curchar];
+        endif
+    endfor
 endfunction

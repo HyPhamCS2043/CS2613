@@ -1,0 +1,9 @@
+#lang racket
+(define (matching list1 list2 pos)
+  (cond
+    [(or (null? list1)(null? list2)) -1]
+    [else
+     (define compareVal (- (abs (car list1)) (abs (car list2))))
+     (cond
+       [(< compareVal 1)  pos]
+       [else (matching (drop list1 1) (drop list2 1) pos)])]))

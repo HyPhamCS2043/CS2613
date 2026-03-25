@@ -1,0 +1,3 @@
+#lang racket
+(define (decal t)
+  (+ 32 (* -0.35 t)))

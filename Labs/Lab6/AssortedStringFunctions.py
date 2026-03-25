@@ -27,18 +27,21 @@ def longest_word(sentence):
 def most_common(sentence):
     cleaned = re.sub(r'[^a-zA-Z\n]', '', sentence)
     cleaned = cleaned.lower()
+    #Create a mutable list from char of the string cleaned
     characters = list(cleaned)
     characters.sort()
 
     ret = []
     max = 0
 
+    #Iterate through the list and find the highest occurence NUMBER of any char
     for i in characters:
         if(i != " "):
             occur = characters.count(i)
             if occur > max:
                 max = occur
     
+    #Find any chars with the max number of occurences and place them in a list to return
     for i in characters:
         if(i != " "):
             if(characters.count(i) == max):

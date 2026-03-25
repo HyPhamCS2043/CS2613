@@ -220,7 +220,7 @@ class Course(DoubleLinkedList):
         stringOut = ""
         current = self.head
         while current:
-            stringOut = stringOut + current.data.name + " " + str(current.data.studentID) + "\n"
+            stringOut = stringOut + current.data.name + ": " + str(current.data.studentID) + "\n"
             current = current.next
         print(stringOut)
     
@@ -228,7 +228,7 @@ class Course(DoubleLinkedList):
         stringOut = ""
         current = self.tail
         while current:
-            stringOut = stringOut + current.data.name + " " + str(current.data.studentID) + "\n"
+            stringOut = stringOut + current.data.name + ": " + str(current.data.studentID) + "\n"
             current = current.prev
         print(stringOut)
 
@@ -266,6 +266,24 @@ while(curChoice != 0):
             print("The course currently has no student")
         else:
             print("Number of students in the course: " + str(currentCourse.num_students()))
+    elif curChoice == 4:
+        if currentCourse.length == 0:
+            print("The course currently has no student")
+        else:
+            currentCourse.print_ascend()
+    elif curChoice == 5:
+        if currentCourse.length == 0:
+            print("The course currently has no student")
+        else:
+            currentCourse.print_descend()
+    else: 
+        print("Please make a selection for the course " + currentCourse.courseName)
+        print(""" \t1: Add Student
+        2: Remove Student
+        3: Print Number of Students
+        4: Class List in Ascending Order
+        5: Class List in Descending Order
+        0: Exit Program""")
         
     #Get next input
     curChoice = int(input())

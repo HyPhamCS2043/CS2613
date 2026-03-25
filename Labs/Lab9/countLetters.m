@@ -22,8 +22,10 @@
 ## Author: Hy Pham <hpham@gc112m13.cs.unb.ca>
 ## Created: 2026-02-04
 
+### This function takes in a string and counts the number of each letter in the string, returning a vector of the counts for each letter
 function retval = countLetters (inputStr)
   cleaned = tolower(inputStr);
+  ## create a vector of 26 zeros to count the number of each letter
   retval = zeros (1, 26);
   for i = 1:length(cleaned)
     curChar = cleaned(1, i);

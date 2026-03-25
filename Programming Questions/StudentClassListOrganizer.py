@@ -134,7 +134,7 @@ class Course(DoubleLinkedList):
         return self.length
     
     def add_students(self, student):
-        if self.length >= self._capacity:
+        if self.length >= self.capacity:
             print("Cannot add student to the course. The course is at max capacity.")
         elif self.length == 0:
             super().insert_end(student)
@@ -177,7 +177,7 @@ class Course(DoubleLinkedList):
 
     def remove_students(self, studentID):
         if self.length == 0:
-            print("The classlist is currently empty.")
+            print("The classlist is currently empty.")    
         else:
             current = self.head
             currentID = current.data.studentID
@@ -186,7 +186,10 @@ class Course(DoubleLinkedList):
             while current:
                 if currentID == studentID:
 
-                    if current == self.head:
+                    if self.length == 1:
+                        self.head = None
+                        self.tail = None
+                    elif current == self.head:
                         self.head = current.next
                         current.next.prev = None
                     elif current == self.tail: 
@@ -233,7 +236,7 @@ class Course(DoubleLinkedList):
 
 print("Enter class name and max number of students separated by the ENTER key")
 courseName = input()
-courseCapacity = input()
+courseCapacity = int(input())
 currentCourse = Course(courseName, courseCapacity)
 
 
@@ -245,6 +248,24 @@ print(""" \t1: Add Student
 \t5: Class List in Descending Order
 \t0: Exit Program""")
 
+curChoice = int(input())
+
+while(curChoice != 0):
+    if curChoice == 1:
+        print("To add: Input student name and student number (separated by ENTER key)")
+        stuName = input()
+        stuID = int(input())
+        newStudent = Student(stuName, stuID)
+        currentCourse.add_students(newStudent)
+    elif curChoice == 2:
+        print("To remove: Input student's unique id (as an integer)")
+        stuID = int(input())
+        currentCourse.remove_students(stuID)
+
+    #Get next input
+    curChoice = int(input())
+
+sys.exit(0)
 
 
 

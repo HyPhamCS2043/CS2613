@@ -1,0 +1,12 @@
+#lang racket
+(require racket/class)
+
+(define cat-class%
+  (class object%
+    (init type)
+    (define cat-type type)
+    (super-new)
+    (define/public (get-type)
+      cat-type)
+    (define/public (set-type typeIn)
+      set! cat-type typeIn)))

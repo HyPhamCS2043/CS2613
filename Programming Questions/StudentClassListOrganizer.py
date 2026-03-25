@@ -261,7 +261,12 @@ while(curChoice != 0):
         print("To remove: Input student's unique id (as an integer)")
         stuID = int(input())
         currentCourse.remove_students(stuID)
-
+    elif curChoice == 3:
+        if currentCourse.length == 0:
+            print("The course currently has no student")
+        else:
+            print("Number of students in the course: " + str(currentCourse.num_students()))
+        
     #Get next input
     curChoice = int(input())
 

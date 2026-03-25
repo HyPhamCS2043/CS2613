@@ -1,0 +1,64 @@
+student1 = Student("Austin", 1)
+student2 = Student("Avery", 5)
+student3 = Student("Jessie", 3)
+student4 = Student("Zach", 0)
+
+course1 = Course("CS2053", 5)
+print("Number of student in course: " + str(course1.num_students()))
+
+course1.add_students(student1)
+course1.add_students(student2)
+
+
+print("Current head node: " + course1.head.data.name)
+print("Current tail node: " + course1.tail.data.name)
+
+print("----------------------------------------")
+course1.add_students(student3)
+
+print("After adding 3 students")
+print("Number of student in course: " + str(course1.num_students()))
+print("Current head node: " + course1.head.data.name)
+print("Current tail node: " + course1.tail.data.name)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend() 
+
+print("----------------------------------------")
+#Adding duplicates
+course1.add_students(student4)  
+course1.add_students(student1)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()   
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(5)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()   
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(5)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()  
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(0)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()  
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+print("Current head node: " + course1.head.data.name)
+print(student1 == course1.head.next.data)

@@ -1,6 +1,8 @@
 #Author: Hy Pham
 #Student ID: 364417
 
+import sys
+
 #Student Object
 class Student:
     def __init__(self, name, studentID):
@@ -23,11 +25,11 @@ class Student:
     def studentID(self, stuID):
         self._studentID = stuID
 
-    def isSameAs(self, student):
-        if self.studentID == student.studentID:
-            return True
-        else:
-            return False
+    #def isSameAs(self, student):
+    #    if self.studentID == student.studentID:
+    #        return True
+    #    else:
+    #        return False
 
 #Node class for double linked list implementation
 class Node:
@@ -112,6 +114,22 @@ class Course(DoubleLinkedList):
         self._courseName = courseName
         self._capacity = capacity
 
+    @property
+    def courseName(self):
+        return self._courseName
+    
+    @property
+    def capacity(self):
+        return self._capacity
+    
+    @courseName.setter
+    def courseName(self, name):
+        self._courseName = name
+    
+    @capacity.setter
+    def capacity(self, num):
+        self._capacity = num
+    
     def num_students(self):
         return self.length
     
@@ -213,66 +231,20 @@ class Course(DoubleLinkedList):
 
 
 
+print("Enter class name and max number of students separated by the ENTER key")
+courseName = input()
+courseCapacity = input()
+currentCourse = Course(courseName, courseCapacity)
+
+
+print("Please make a selection for the course " + currentCourse.courseName)
+print(""" \t1: Add Student
+\t2: Remove Student
+\t3: Print Number of Students
+\t4: Class List in Ascending Order
+\t5: Class List in Descending Order
+\t0: Exit Program""")
 
 
 
-student1 = Student("Austin", 1)
-student2 = Student("Avery", 5)
-student3 = Student("Jessie", 3)
-student4 = Student("Zach", 0)
 
-course1 = Course("CS2053", 5)
-print("Number of student in course: " + str(course1.num_students()))
-
-course1.add_students(student1)
-course1.add_students(student2)
-
-
-print("Current head node: " + course1.head.data.name)
-print("Current tail node: " + course1.tail.data.name)
-
-print("----------------------------------------")
-course1.add_students(student3)
-
-print("After adding 3 students")
-print("Number of student in course: " + str(course1.num_students()))
-print("Current head node: " + course1.head.data.name)
-print("Current tail node: " + course1.tail.data.name)
-print("Ascending List:")
-course1.print_ascend()
-print("Descending List:")
-course1.print_descend() 
-
-print("----------------------------------------")
-#Adding duplicates
-course1.add_students(student4)  
-course1.add_students(student1)
-print("Ascending List:")
-course1.print_ascend()
-print("Descending List:")
-course1.print_descend()   
-print("Number of student in course: " + str(course1.num_students()))
-
-print("----------------------------------------")
-course1.remove_students(5)
-print("Ascending List:")
-course1.print_ascend()
-print("Descending List:")
-course1.print_descend()   
-print("Number of student in course: " + str(course1.num_students()))
-
-print("----------------------------------------")
-course1.remove_students(5)
-print("Ascending List:")
-course1.print_ascend()
-print("Descending List:")
-course1.print_descend()  
-print("Number of student in course: " + str(course1.num_students()))
-
-print("----------------------------------------")
-course1.remove_students(0)
-print("Ascending List:")
-course1.print_ascend()
-print("Descending List:")
-course1.print_descend()  
-print("Number of student in course: " + str(course1.num_students()))

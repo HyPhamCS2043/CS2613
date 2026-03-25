@@ -136,14 +136,58 @@ class Course(DoubleLinkedList):
                 stuToAdd.prev = current.prev
                 stuToAdd.next = current
 
+                #Check if the current node is the head node or not 
+                #If the prev node exits
                 if current.prev:
                     current.prev.next = stuToAdd
+                #Else if the prev node is None (current is the head node)
+                elif current.prev is None:
+                    self.head = stuToAdd
+                
                 current.prev = stuToAdd
                 inserted = True
                 self.length += 1
             
             if inserted:
                 print("Student is successfully added to the course.")
+
+    def remove_students(self, studentID):
+        if self.length == 0:
+            print("The classlist is currently empty.")
+        else:
+            current = self.head
+            currentID = current.data.studentID
+            removed = False
+
+            while current:
+                if currentID == studentID:
+
+                    if current == self.head:
+                        self.head = current.next
+                        current.next.prev = None
+                    elif current == self.tail: 
+                        self.tail = current.prev
+                        self.tail.next = None
+                    else:
+                        current.prev.next = current.next
+                        current.next.prev = current.prev
+                    
+                    current.next = None
+                    current.prev = None
+                    self.length -= 1
+                    removed = True
+    
+                #If the student has been removed or if we have reached the end of the course list
+                if removed or current.next is None:
+                    break
+                else:
+                    current = current.next
+                    currentID = current.data.studentID
+            
+            if removed:
+                print("Student is successfully removed")
+            else:
+                print("Student is currently not on the class list")
 
     def print_ascend(self):
         stringOut = ""
@@ -164,7 +208,7 @@ class Course(DoubleLinkedList):
 student1 = Student("Austin", 1)
 student2 = Student("Avery", 5)
 student3 = Student("Jessie", 3)
-
+student4 = Student("Zach", 0)
 
 #print(student1.name)
 
@@ -178,22 +222,58 @@ student3 = Student("Jessie", 3)
 #print(linked.tail.data.name)
 #print(linked.length)
 
-course1 = Course("CS2053", 3)
-print(course1.num_students())
+course1 = Course("CS2053", 5)
+print("Number of student in course: " + str(course1.num_students()))
 
 course1.add_students(student1)
 course1.add_students(student2)
 
-print(course1.head.data.name)
-print(course1.tail.data.name)
 
+print("Current head node: " + course1.head.data.name)
+print("Current tail node: " + course1.tail.data.name)
+
+print("----------------------------------------")
 course1.add_students(student3)
 
 print("After adding 3 students")
-print(course1.num_students())
-print(course1.head.data.name)
-print(course1.tail.data.name)
-print("Ascending List: ")
+print("Number of student in course: " + str(course1.num_students()))
+print("Current head node: " + course1.head.data.name)
+print("Current tail node: " + course1.tail.data.name)
+print("Ascending List:")
 course1.print_ascend()
-print("Descending List: ")
-course1.print_descend()     
+print("Descending List:")
+course1.print_descend() 
+
+print("----------------------------------------")
+#Adding duplicates
+course1.add_students(student4)  
+course1.add_students(student1)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()   
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(5)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()   
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(5)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()  
+print("Number of student in course: " + str(course1.num_students()))
+
+print("----------------------------------------")
+course1.remove_students(0)
+print("Ascending List:")
+course1.print_ascend()
+print("Descending List:")
+course1.print_descend()  
+print("Number of student in course: " + str(course1.num_students()))

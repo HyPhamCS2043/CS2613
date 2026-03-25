@@ -23,6 +23,12 @@ class Student:
     def studentID(self, stuID):
         self._studentID = stuID
 
+    def isSameAs(self, student):
+        if self.studentID == student.studentID:
+            return True
+        else:
+            return False
+
 #Node class for double linked list implementation
 class Node:
     def __init__(self, data):
@@ -205,22 +211,15 @@ class Course(DoubleLinkedList):
             current = current.prev
         print(stringOut)
 
+
+
+
+
+
 student1 = Student("Austin", 1)
 student2 = Student("Avery", 5)
 student3 = Student("Jessie", 3)
 student4 = Student("Zach", 0)
-
-#print(student1.name)
-
-#linked = DoubleLinkedList()
-#print(linked.length)
-#linked.insert_end(student1)
-#print(linked.length)
-#print(linked.head.data.studentID)
-#linked.insert_end(student2)
-
-#print(linked.tail.data.name)
-#print(linked.length)
 
 course1 = Course("CS2053", 5)
 print("Number of student in course: " + str(course1.num_students()))

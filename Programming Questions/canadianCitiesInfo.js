@@ -31,7 +31,25 @@ async function fetchData() {
 	try {
 		const response = await axios.request(options);
 
-        console.log(response.data.data[0]);
+        if (response.data.metadata.totalCount === 0) {
+            console.log("The city could not be found.");
+        }
+        else {
+            var latitude = response.data.data[0].latitude;
+            var longitude = response.data.data[0].longitude;
+            var population = response.data.data[0].population;
+            var wikiDataId = response.data.data[0].wikiDataId;
+
+            var firstOutput = "";
+            if (population > 0) {
+                firstOutput = `${searchParams[0]}, ${searchParams[1]} (${latitude}, ${longitude}) has a population of ${population}`;
+            }
+            else {
+                firstOutput = `${searchParams[0]}, ${searchParams[1]} (${latitude}, ${longitude}) does not have population data`;
+            }
+            console.log(firstOutput);
+        }
+        
 	} catch (error) {
 		console.error(error);
 	}

@@ -1,0 +1,6 @@
+[
+{"description": "Finish lab", "priority": 1, "completed": false},
+{"description": "Buy groceries", "priority": 2, "completed": true},
+{"description": "Call mom", "priority": 1, "completed": false},
+{"description": "Clean room", "priority": 3, "completed": false}
+]

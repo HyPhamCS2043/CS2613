@@ -1,0 +1,12 @@
+#lang racket
+(require racket/class)
+
+(define LetterNode% (class object%
+                      (super-new)
+                      (init-field left right letter frequency)
+                      ))
+
+(define BST% (class object%
+               (super-new)
+               (init-field head)
+               ))

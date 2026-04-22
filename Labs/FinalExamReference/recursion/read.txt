@@ -1,0 +1,25 @@
+Contains Examples of various tricky recursion problems.
+
+Key things to remember per language:
+
+Python — input() always returns a string, always cast with int() or float() for numbers
+JavaScript — no built-in sync input, must use readline and nest inside callbacks
+Racket — ~a is the universal format placeholder, read-line always returns a string so cast with string->number
+Octave — input() without 's' auto-parses numbers, fprintf needs \n explicitly or output won't show on its own line
+
+For Recursion
+Verdict: Racket is the king of recursion — 
+it's the only language here with true tail call optimization and where recursion is the intended style over loops. 
+Python is the most readable but hits a stack limit fastest.
+
+For Terminal I/O
+Python is the cleanest with with open(...) as f handling closing automatically. 
+Octave is the most C-like requiring manual fopen/fclose. 
+Racket is the safest with call-with-input-file. 
+JavaScript requires importing fs and is least natural for file I/O.
+
+For File I/O
+Python and Octave are the most beginner-friendly for terminal I/O. 
+JavaScript is the most awkward — synchronous input requires readline boilerplate and nested callbacks. 
+Racket is consistent but verbose. 
+Octave is uniquely convenient in that input() auto-parses numbers without casting.
